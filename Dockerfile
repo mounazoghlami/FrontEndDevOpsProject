@@ -1,4 +1,12 @@
-FROM openjdk:11
-EXPOSE 8089
-ADD target/achat-1.0-S7.jar achat-1.0-S7.jar
-ENTRYPOINT ["java", "-jar", "/achat-1.0-S7.jar"]
+FROM node:16.3.0-alpine AS BUILD
+WORKDIR /app
+COPY package.json .
+COPY package-lock.json .
+RUN npm config set legacy-peer-deps true
+RUN npm install
+COPY . .
+RUN npm run build 
+
+FROM nginx:latest
+COPY --from=BUILD /app/dist/crudtuto-Front /usr/share/nginx/html
+EXPOSE 80
