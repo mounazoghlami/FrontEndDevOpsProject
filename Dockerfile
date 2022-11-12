@@ -1,4 +1,4 @@
-FROM node : frontenddevops AS BUILD
+FROM node : frontenddevops
 WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
