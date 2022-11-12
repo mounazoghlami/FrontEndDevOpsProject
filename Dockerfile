@@ -7,7 +7,7 @@ RUN npm install
 COPY . .
 RUN npm run build 
 FROM nginx:latest
-COPY --from=BUILD /app/dist/crud /usr/share/nginx/html
+COPY --from=BUILD /app/dist/crudtuto-front /usr/share/nginx/html
 EXPOSE 80
 
 EXPOSE 80
