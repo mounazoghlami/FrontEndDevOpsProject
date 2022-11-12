@@ -1,4 +1,4 @@
-FROM node : 16.3.0-alpine
+FROM node : frontenddevops AS BUILD
 WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
