@@ -6,5 +6,8 @@ RUN npm config set legacy-peer-deps true
 RUN npm install
 COPY . .
 RUN npm run build 
+FROM nginx:latest
+COPY --from=BUILD /app/dist/crud-tuto-Front /usr/share/nginx/html
+EXPOSE 80
 
 EXPOSE 80
